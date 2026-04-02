@@ -10,6 +10,5 @@ class Book(Base):
     title = Column(String(100),nullable=False)
     author = Column(String(100),nullable=False)
     price = Column(Float, nullable=False)
-    category_id = Column(Integer, ForeignKey("categories.id"), nullable=True)
-
-    category = relationship("Category", back_populates="books")
+  
+    order_items = relationship("OrderItem", back_populates = "book")

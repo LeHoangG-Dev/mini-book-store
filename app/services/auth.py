@@ -70,15 +70,20 @@ def login(db: Session, login_request: LoginRequest):
     }
 
 def refresh(db: Session, refresh_token_request: RefreshTokenRequest):
+
     db_token = db.query(RefreshToken).filter(
         RefreshToken.token == refresh_token_request.refresh_token,
         RefreshToken.is_revoked == False
     ).first()
 
-    if not db_token or db_token.expires_at < datetime.now(timezone.utc).replace(tzinfo=None):
+    if not db_token or db_token.expires_at < datetime.now(timezone.utc):
         raise ValueError("Invalid or expired refresh token")
     
-    access_token = create_access_token(db_token.user_id)
+    user = db.query(User).filter(User.id == db_token.user_id).first()
+    if not user:
+        raise ValueError("Not found")
+
+    access_token = create_access_token(db_token.user_id, user.role)
     return {"access_token": access_token}
 
 def logout(db: Session, data: RevokeTokenRequest):

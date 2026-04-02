@@ -22,14 +22,11 @@ def get_book(id: int, db: Session = Depends(get_db)):
     return book
 
 @router.post("/", response_model=BookResponse, status_code=status.HTTP_201_CREATED)
-def create_book(
-    book: BookCreate, 
-    db: Session = Depends(get_db)
-):
+def create_book(book: BookCreate, _:User = Depends(require_admin),db: Session = Depends(get_db)):
     return add_book(db, book)
 
 @router.put("/{id}", response_model=BookResponse, status_code=status.HTTP_200_OK)
-def updated_book(id: int, book: BookUpdate, db: Session = Depends(get_db)):
+def updated_book(id: int, book: BookUpdate, _:User = Depends(require_admin),db: Session = Depends(get_db)):
     db_book = update_book(db, id, book)
     if not db_book:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Book with {id} not found")
@@ -37,7 +34,7 @@ def updated_book(id: int, book: BookUpdate, db: Session = Depends(get_db)):
 
 
 @router.delete("/{id}", status_code=status.HTTP_204_NO_CONTENT)
-def deleted_book(id: int, db: Session = Depends(get_db)):
+def deleted_book(id: int, _: User = Depends(require_admin), db: Session = Depends(get_db)):
     db_book = delete_book(db,id)
     if not db_book:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Book not found")

@@ -32,8 +32,8 @@ from app.core.base import Base
 from app.models.users import User
 from app.models.auth import RefreshToken
 from app.models.books import Book
-from app.models.categories import Category
 from app.models.cart import CartItem
+from app.models.orders import OrderItem, Order
 
 
 load_dotenv()

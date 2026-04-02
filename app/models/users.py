@@ -24,5 +24,5 @@ class User(Base):
 
     refresh_tokens = relationship("RefreshToken", back_populates="user", cascade="all, delete-orphan")
     #cart = relationship("cart", back_populates="user", uselist=False)
-    # orders         = relationship("Order",        back_populates="user")
+    orders         = relationship("Order",        back_populates="user")
     # reviews        = relationship("Review",       back_populates="user")
