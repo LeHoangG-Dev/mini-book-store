@@ -12,6 +12,8 @@ class OrderStatus(str, enum.Enum):
     shipping = "shipping"
     delivered = "delivered"
     cancelled = "cancelled"
+    shipped = "shipped"
+
 
 
 class Order(Base):
