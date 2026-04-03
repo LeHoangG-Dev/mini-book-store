@@ -1,46 +1,46 @@
+import pytest
+from fastapi.testclient import TestClient
+from sqlalchemy import create_engine, text
+from sqlalchemy.orm import sessionmaker
+from app.core.config import settings
+from app.main import app
+from app.core.dependencies import get_db
+from app.core.base import Base
 
-    
+engine = create_engine(settings.TEST_DATABASE_URL)
+TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-"""
-@pytest.fixture
-def registered_user(client):
-    res = client.post("/api/v1/auth/register", json={
-        "email": "test@test.com",
-        "password": "12345678",
-        "full_name": "Test User"
-    })
-    return res.json()
 
-@pytest.fixture
-def token(client, registered_user):
-    res = client.post("/api/v1/auth/login", json={
-        "email": "test@test.com",
-        "password": "12345678"
-    })
-    return res.json()["access_token"]
+@pytest.fixture(scope="session", autouse=True)
+def setup_database():
+    Base.metadata.create_all(bind=engine)
+    yield
+    Base.metadata.drop_all(bind=engine)
 
-@pytest.fixture
-def auth_headers(token):
-    return {"Authorization": f"Bearer {token}"}
 
-@pytest.fixture
-def category(client, auth_headers):
-    res = client.post("/api/v1/categories/", 
-        json={"name": "Fiction"},
-        headers=auth_headers
-    )
-    return res.json()
+@pytest.fixture(scope="function", autouse=True)
+def clean_tables(setup_database):
+    yield
+    with engine.connect() as conn:
+        conn.execute(text("TRUNCATE TABLE refresh_tokens, users RESTART IDENTITY CASCADE"))
+        conn.commit()
 
-@pytest.fixture
-def book(client, auth_headers, category):
-    res = client.post("/api/v1/books/",
-        json={
-            "title": "Test Book",
-            "author": "Author",
-            "price": 100.0,
-            "category_id": category["id"]
-        },
-        headers=auth_headers
-    )
-    return res.json()
-"""
+
+@pytest.fixture(scope="function")
+def db_session():
+    session = TestingSessionLocal()
+    try:
+        yield session
+    finally:
+        session.close()
+
+
+@pytest.fixture(scope="function")
+def client(db_session):
+    def override_get_db():
+        yield db_session
+
+    app.dependency_overrides[get_db] = override_get_db
+    with TestClient(app) as c:
+        yield c
+    app.dependency_overrides.clear()
