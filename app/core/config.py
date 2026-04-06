@@ -1,4 +1,5 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
+from typing import Optional
 
 class Settings(BaseSettings):
 
@@ -13,7 +14,7 @@ class Settings(BaseSettings):
     DB_HOST: str
     DB_PORT: int
     DB_NAME: str
-    TEST_DB_NAME: str 
+    TEST_DB_NAME: Optional[str] = None
 
     DEBUG: bool 
     secret_key: str
