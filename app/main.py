@@ -1,6 +1,10 @@
 from fastapi import FastAPI
 from .routers import auth, books, cart, orders, users
 from .models import User, RefreshToken, Book
+from app.core.create_admin import create_first_admin
+
+create_first_admin()
+
 app = FastAPI()
 
 @app.get("/", tags=["Health"])

@@ -4,7 +4,7 @@ from typing import Optional
 class Settings(BaseSettings):
 
     model_config = SettingsConfigDict(
-        env_file=".env",
+        env_file=".env.app",
         env_file_encoding="utf-8",
         extra="ignore"
     )
@@ -16,6 +16,9 @@ class Settings(BaseSettings):
     DB_NAME: str
     TEST_DB_NAME: Optional[str] = None
 
+    admin_email: str
+    admin_password: str
+    
     DEBUG: bool 
     secret_key: str
     algorithm: str
