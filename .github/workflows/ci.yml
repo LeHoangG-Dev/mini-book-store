@@ -17,7 +17,7 @@ jobs:
         run: docker compose version
 
       - name: Build Containers
-        run: docker compose -f docker-compose.yml -f docker-compose.dev.yml Build
+        run: docker compose -f docker-compose.yml -f docker-compose.dev.yml build
 
       - name: Run tests
         run: docker compose -f docker-compose.yml -f docker-compose.dev.yml run --rm app pytest -v
