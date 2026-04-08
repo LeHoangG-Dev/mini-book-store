@@ -3,7 +3,7 @@ from app.models.users import User
 from app.core.database import SessionLocal
 from app.core.security import hash_password
 from app.core.config import settings
-from datetime import datetime
+from datetime import datetime, timezone
 
 def create_first_admin():
 
@@ -22,7 +22,7 @@ def create_first_admin():
         role = "admin",
         is_active=True,
         is_verified=False,
-        updated_at=datetime.utcnow()
+        updated_at=datetime.now(timezone.utc)
     )
     db.add(admin_user)
     db.commit()

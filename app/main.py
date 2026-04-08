@@ -2,10 +2,17 @@ from fastapi import FastAPI
 from .routers import auth, books, cart, orders, users
 from .models import User, RefreshToken, Book
 from app.core.create_admin import create_first_admin
+from contextlib import asynccontextmanager
 
-create_first_admin()
 
-app = FastAPI()
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    create_first_admin()
+    yield
+
+app = FastAPI(lifespan=lifespan)
 
 @app.get("/", tags=["Health"])
 def root():
