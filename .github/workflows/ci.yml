@@ -51,6 +51,9 @@ jobs:
           echo "ADMIN_EMAIL=${{ secrets.ADMIN_EMAIL }}" >> .env.test
           echo "ADMIN_PASSWORD=${{ secrets.ADMIN_PASSWORD }}" >> .env.test
 
+      - name: Debug env
+        run: cat .env.test
+
       - name: Build container
         run: docker compose -f docker-compose.test.yml build 
 
