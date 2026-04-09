@@ -78,38 +78,129 @@ docker compose -f docker-compose.test.yml run --rm app pytest -v
 
 ## 🔐 Environment Variables
 
-# ORM
+#ORM
 DB_USER : Database user
 DB_NAME : Database name
 DB_PASSWORD: Database password
 
 DB_TEST_NAME: Database test name (If testing)
 
-# Database
+#Database
 POSTGRES_USER: Postgre user
 POSTGRES_DB: Postgre database name
 POSTGRES_PASSWORD: Postgre password
 
-# HOST
+#HOST
 DB_HOST: Database host
 DB_PORT: Database port
 
-# Security
+#Security
 ALGORITHM: JWT algorithm
 SECRET_KEY: JWT secret key
 
-# Tokens
+#Tokens
 ACCESS_TOKEN_EXPIRE_MINUTES
 REFRESH_TOKEN_EXPIRE_DAYS
 
-# App
+#App
 DEBUG: Debug mode
 
-# Admin
+#Admin
 ADMIN_EMAIL: admin account
 ADMIN_PASSWORD: admin password
 
 ## 📡 API Endpoints 
+
+Health
+
+
+GET
+/
+Root
+
+Auth
+POST
+/api/v1/auth/register
+
+POST
+/api/v1/auth/login
+
+POST
+/api/v1/auth/refresh
+
+POST
+/api/v1/auth/logout
+
+Users
+GET
+/api/v1/users/
+
+GET
+/api/v1/users/me
+
+PUT
+/api/v1/users/me
+
+PUT
+/api/v1/users/me/password
+
+Books
+GET
+/api/v1/books/
+
+POST
+/api/v1/books/
+
+GET
+/api/v1/books/{id}
+
+PUT
+/api/v1/books/{id}
+
+DELETE
+/api/v1/books/{id}
+
+Carts
+GET
+/api/v1/cart/
+
+POST
+/api/v1/cart/items
+
+PUT
+/api/v1/cart/items/{book_id}
+
+DELETE
+/api/v1/cart/items/{book_id}
+
+Orders
+POST
+/api/v1/orders/checkout
+
+GET
+/api/v1/orders/
+
+GET
+/api/v1/orders/{order_id}
+
+PATCH
+/api/v1/orders/{order_id}/cancel
+
+PATCH
+/api/v1/orders/{order_id}/received
+
+PATCH
+/api/v1/orders/admin/{order_id}/confirm
+
+PATCH
+/api/v1/orders/admin/{order_id}/ship
+
+PATCH
+/api/v1/orders/admin/{order_id}/shipped
+
+PATCH
+/api/v1/orders/admin/{order_id}/cancel
+
 
 ## 🤝 Contributing
 
@@ -119,6 +210,14 @@ ADMIN_PASSWORD: admin password
 4. Open a Pull Request
 
 ## Demo
+
+Deploy with Render:
+Root:
+![alt text](images/image.png)
+
+Docs:
+![alt text](images/docs.png)
+
 
 ## 📄 License
 
