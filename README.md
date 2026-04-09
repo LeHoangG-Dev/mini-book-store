@@ -52,8 +52,13 @@ The goal of this project is to practice:
 
 1. Clone repository
 
-git@github.com:LeHoangG-Dev/mini-book-store.git
+```bash
+ git clone git@github.com:LeHoangG-Dev/mini-book-store.git
+```
+
+```bash
 cd mini-book-store
+```
 
 2. Create environment file
 
@@ -61,8 +66,10 @@ Create a .env.dev and .env.test for testing in the root directory (You can see t
 
 3. Run with Docker (Docker must be installed in host)
 
+```bash
 docker compose build
 docker compose up -d
+```
 
 4. Access API
 
@@ -74,7 +81,9 @@ http://localhost:80/docs
 
 Run tests using Docker:
 
+```bash
 docker compose -f docker-compose.test.yml run --rm app pytest -v
+```
 
 ## 🔐 Environment Variables
 
