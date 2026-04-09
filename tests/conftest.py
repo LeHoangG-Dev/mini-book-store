@@ -1,11 +1,12 @@
 import pytest
 from fastapi.testclient import TestClient
-from sqlalchemy import create_engine, text
+from sqlalchemy import create_engine, text, delete
 from sqlalchemy.orm import sessionmaker
 from app.core.config import settings
 from app.main import app
 from app.core.dependencies import get_db
 from app.core.base import Base
+from app.models.auth import RefreshToken
 
 engine = create_engine(settings.TEST_DATABASE_URL)
 TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)

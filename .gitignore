@@ -1,6 +1,6 @@
 .venv
 .vscode
 __pycache__
-.env.app
+.env.dev
 .pytest_cache
-.env.db
+.env.test

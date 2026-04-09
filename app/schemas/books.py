@@ -1,5 +1,5 @@
-from pydantic import BaseModel, Field
-from typing import Optional
+from pydantic import BaseModel, Field, ConfigDict
+
 
 class BookBase(BaseModel):
     title: str = Field(...,min_length=1, max_length=200, example="BookA")
@@ -17,7 +17,6 @@ class BookUpdate(BaseModel):
 
 class BookResponse(BookBase):
     id: int
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
     
