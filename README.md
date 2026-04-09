@@ -64,6 +64,21 @@ cd mini-book-store
 
 Create a .env.dev and .env.test for testing in the root directory (You can see the key in .env.dev.example and .env.test.example)
 
+```bash
+touch .env.dev .env.test
+
+cp .env.dev.example .env.dev
+cp .env.test.example .env.test
+
+```
+
+Example generate secrey-key:
+```bash
+openssl rand -hex 32
+```
+
+Copy your key generated to .env.dev and .env.test
+
 3. Run with Docker (Docker must be installed in host)
 
 ```bash
@@ -76,6 +91,12 @@ docker compose up -d
 Swagger UI:
 
 http://localhost:80/docs
+
+5. Stop services
+
+```bash
+docker compose down -v
+```
 
 ## 🧪 Running Tests
 
