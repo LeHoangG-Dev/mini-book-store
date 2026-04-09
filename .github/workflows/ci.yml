@@ -29,14 +29,8 @@ jobs:
       - name: Create env file
         run: echo "${{ secrets.ENV_TESTING }}" > .env.test
           
-      - name: Debug env
-        run: cat .env.test
-
       - name: Build container
         run: docker compose -f docker-compose.test.yml build 
 
       - name: Run test inside docker
-        run: docker compose -f docker-compose.test.yml run --rm app pytest
-
-      - name: Stop docker
-        run: docker compose down -v
+        run: docker compose -f docker-compose.test.yml run --rm app pytest -v
