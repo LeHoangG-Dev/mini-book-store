@@ -1,9 +1,10 @@
-name: Test README Update
+name: Update Dockerfile
 
 on:
   push:
     branches:
-      - docs/update_readme
+      - main
+      - master
   pull_request:
     branches:
       - main
