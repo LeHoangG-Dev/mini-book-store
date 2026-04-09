@@ -18,42 +18,13 @@ The goal of this project is to practice:
     - Containerization with Docker
     - CI/CD pipeline setup
 
-## 🚀 Features
-
-- JWT Authentication (Access & Refresh Token)
-- User management
-- Book CRUD environment
-- Dockerized environment
-- Environment-based configuration
-- Automated testing with Pytest
-- CI pipeline with GitHub Actions
-
-## 🛠️ Tech Stack
-
-- Backend: FastAPI
-- Database: PostgreSQL
-- ORM: SQLAlchemy
-- Validation: Pydantic
-- AuthenticationL JWT
-- Containerization: Docker, Docker Compose
-- Testing: Pytest
-- CI/CD: GitHub Actions
-
-## 📂 Project Structure
-    app/
-    |--main.py
-    |--core/
-    |--models/
-    |--routers/
-    |--schemas/
-    |--services/
 
 ## ⚙️ Setup & Installation
 
 1. Clone repository
 
 ```bash
- git clone git@github.com:LeHoangG-Dev/mini-book-store.git
+ git clone https://github.com/LeHoangG-Dev/mini-book-store.git
 ```
 
 ```bash
@@ -102,9 +73,49 @@ docker compose down -v
 
 Run tests using Docker:
 
+Remember to stop the dev container first
+
 ```bash
-docker compose -f docker-compose.test.yml run --rm app pytest -v
+docker compose -f docker-compose.test.yml build --no-cache
+
+docker compose -f docker-compose.test.yml up -d 
+
+docker compose -f docker-compose.test.yml exec app pytest -v
+
+docker compose -f docker-compose.test.yml down -v
 ```
+
+## 🚀 Features
+
+- JWT Authentication (Access & Refresh Token)
+- User management
+- Book CRUD environment
+- Dockerized environment
+- Environment-based configuration
+- Automated testing with Pytest
+- CI pipeline with GitHub Actions
+
+## 🛠️ Tech Stack
+
+- Backend: FastAPI
+- Database: PostgreSQL
+- ORM: SQLAlchemy
+- Validation: Pydantic
+- AuthenticationL JWT
+- Containerization: Docker, Docker Compose
+- Testing: Pytest
+- CI/CD: GitHub Actions
+
+## 📂 Project Structure
+    app/
+    |--main.py
+    |--core/
+    |--models/
+    |--routers/
+    |--schemas/
+    |--services/
+
+
 
 ## 🔐 Environment Variables
 
