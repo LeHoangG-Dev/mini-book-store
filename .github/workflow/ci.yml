@@ -18,13 +18,22 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
+          python-version: '3.12'
 
       - name: Install dependencies
         run:  |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          pip isntall pytest
+          pip install pytest
 
-      - name: Run tests
-        run: pytest
+      - name: Build container
+        run: docker compose -f docker-compose.test.yml build 
+
+      - name: Run container
+        run: docker compose -f docker-compose.test.yml up -d
+
+      - name: Run test inside docker
+        run: docker compose exec app pytest
+
+      - name: Stop docker
+        run: docker compose down -v
