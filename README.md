@@ -1,8 +1,8 @@
 ## Mini Book Store
 
-A backend RESTful API for a book store system built with FastAPI and Postgre SQL.
+A backend RESTful API for a book store system built with FastAPI and PostgreSQL.
 
-This project demonstates authentication, CRUD operations, Dockerized development and CI/CD integration using GitHub Actions.
+This project demonstrates authentication, CRUD operations, Dockerized development and CI/CD integration using GitHub Actions.
 
 ## 📌 Description
 
@@ -12,7 +12,7 @@ It provides APIs for managing books and users, along with authentication using J
 
 The goal of this project is to practice:
 
-    - Backend architecture desgin
+    - Backend architecture design
     - API development with FastAPI
     - Database interaction using SQLAlchemy
     - Containerization with Docker
@@ -89,7 +89,7 @@ docker compose -f docker-compose.test.yml down -v
 
 - JWT Authentication (Access & Refresh Token)
 - User management
-- Book CRUD environment
+- Book CRUD operations
 - Dockerized environment
 - Environment-based configuration
 - Automated testing with Pytest
@@ -101,7 +101,7 @@ docker compose -f docker-compose.test.yml down -v
 - Database: PostgreSQL
 - ORM: SQLAlchemy
 - Validation: Pydantic
-- AuthenticationL JWT
+- Authentication: JWT
 - Containerization: Docker, Docker Compose
 - Testing: Pytest
 - CI/CD: GitHub Actions
@@ -245,7 +245,7 @@ PATCH
 
 ## 🤝 Contributing
 
-1. Fork the repostiry
+1. Fork the repository
 2. Create a new branch
 3. Commit your changes
 4. Open a Pull Request
@@ -253,10 +253,11 @@ PATCH
 ## Demo
 
 Deploy with Render:
-Root:
+
+- Root:
 ![alt text](images/image.png)
 
-Docs:
+- Docs:
 ![alt text](images/docs.png)
 
 
